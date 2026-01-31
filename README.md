@@ -6,6 +6,7 @@ A user-friendly web application for Canadian drivers to visualize weather condit
 
 ## ✨ Features
 
+- **🔍 Address Search**: Simply type city names or addresses - no need for manual coordinates!
 - **Interactive Route Planning**: Plot multi-point journeys with waypoints
 - **Real-time Weather Data**: Get current weather conditions along your entire route
 - **Weather Intervals**: Automatic weather checks every ~100km along your journey
@@ -62,9 +63,10 @@ A user-friendly web application for Canadian drivers to visualize weather condit
 ## 📖 How to Use
 
 1. **Enter Route Points**
-   - Start with at least a start and end point
-   - Enter coordinates (latitude/longitude) for each point
-   - Optionally add a name/city for each point
+   - Type a city name or address (e.g., "Toronto, ON" or "Calgary, AB")
+   - Click the "🔍 Search" button or press Enter
+   - Select your location from the dropdown results
+   - Coordinates are automatically filled in!
    - Add waypoints for stops along your route
 
 2. **Quick Start**
@@ -80,14 +82,15 @@ A user-friendly web application for Canadian drivers to visualize weather condit
    - Review temperature ranges and average conditions
    - Identify hazardous weather conditions along your route
 
-## 🗺️ Finding Coordinates
+## 🗺️ Address Search
 
-You can find coordinates for any location using Google Maps:
+The app uses **OpenStreetMap's free geocoding service** (Nominatim) to search for addresses:
 
-1. Right-click on a location in Google Maps
-2. Click on the coordinates to copy them
-3. The format is: `latitude, longitude`
-4. Enter them separately in the app's input fields
+- **No API key needed** for address search
+- Just type city names like "Vancouver, BC" or "Halifax, NS"
+- Works with full addresses too
+- Search is limited to Canadian locations by default
+- Advanced users can still enter coordinates manually if preferred
 
 ## 🛠️ Tech Stack
 
@@ -96,6 +99,7 @@ You can find coordinates for any location using Google Maps:
 - **Styling**: Tailwind CSS
 - **Maps**: React Leaflet + Leaflet Routing Machine
 - **Weather API**: OpenWeatherMap
+- **Geocoding**: Nominatim (OpenStreetMap) - Free, no API key required
 - **HTTP Client**: Axios
 
 ## 📁 Project Structure
@@ -108,11 +112,12 @@ entre-x/
 │   └── globals.css           # Global styles
 ├── components/
 │   ├── MapComponent.tsx      # Interactive map with routing
-│   ├── RouteInput.tsx        # Route planning form
+│   ├── RouteInput.tsx        # Route planning form with address search
 │   └── WeatherSummary.tsx    # Weather overview panel
 ├── lib/
 │   ├── weather.ts            # Weather API functions
-│   └── route.ts              # Route calculation utilities
+│   ├── route.ts              # Route calculation utilities
+│   └── geocoding.ts          # Address search/geocoding
 ├── types/
 │   └── index.ts              # TypeScript type definitions
 └── public/                   # Static assets
@@ -212,13 +217,13 @@ This project is open source and available for personal and educational use.
 ## 🙏 Acknowledgments
 
 - **OpenWeatherMap** for weather data
-- **OpenStreetMap** for map tiles
+- **OpenStreetMap/Nominatim** for map tiles and geocoding services
 - **Leaflet** for mapping library
 - **Next.js** team for the excellent framework
 
 ## 💡 Tips for Best Experience
 
-1. **Accuracy**: Use precise coordinates for better weather accuracy
+1. **Address Search**: Just type city names - much easier than finding coordinates!
 2. **Route Planning**: Add waypoints for long journeys to see weather at stops
 3. **Refresh**: Weather data updates each time you submit the route
 4. **Mobile**: The app is fully responsive and works on mobile devices
@@ -238,6 +243,13 @@ This project is open source and available for personal and educational use.
 - Ensure JavaScript is enabled
 - Try refreshing the page
 - Clear browser cache
+
+### Address Search Not Working
+
+- Try adding province abbreviations (e.g., "Toronto, ON" instead of just "Toronto")
+- Use common city names (e.g., "Montreal" instead of "Montréal")
+- Check your internet connection
+- Try manual coordinates as a fallback
 
 ### Route Not Showing
 
